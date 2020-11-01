@@ -23,6 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'ymljg0=w&0(%_-f2ouqn^@8rze*7-ovj2jh_t6tc%rx9$p=b(#'
 
+LOGIN_URL = '/'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -43,6 +45,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'shop',
 ]
+
+AUTH_USER_MODEL = 'shop.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
