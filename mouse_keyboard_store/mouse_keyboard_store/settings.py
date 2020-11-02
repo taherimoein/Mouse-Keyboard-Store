@@ -82,15 +82,27 @@ WSGI_APPLICATION = 'mouse_keyboard_store.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# Postgersql Local DB
+# # Postgersql Local DB
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'dbmousekeyboardstore',
+#         'USER': 'postgres',
+#         'PASSWORD': 'moein@taheri',
+#         'HOST' : 'localhost',
+#         'PORT' : '5432',
+#     }
+# }
+
+# Postgersql Liara DB
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'dbmousekeyboardstore',
-        'USER': 'postgres',
-        'PASSWORD': 'moein@taheri',
-        'HOST' : 'localhost',
-        'PORT' : '5432',
+        'USER': 'root',
+        'PASSWORD': 'pTQYfXAK2jOE2WlZQuUWLhli',
+        'HOST' : 'tommy.iran.liara.ir',
+        'PORT' : '31716',
     }
 }
 

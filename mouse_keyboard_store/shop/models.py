@@ -179,13 +179,13 @@ class OptionMeta(models.Model):
 # Product (محصول) Model
 class Product(models.Model):
     title = models.CharField(verbose_name = 'عنوان', max_length = 255)
-    slug = models.SlugField(verbose_name = 'شناسه', unique = True)
     description = models.TextField(verbose_name = 'توضیحات', blank = True)
-    image_list = ArrayField(models.URLField(), verbose_name = 'لیست عکس های محصول', null = True, blank = True)
+    top_image = models.URLField(verbose_name = 'عکس شاخص', null = True, max_length = 255)
+    image_list = ArrayField(models.URLField(max_length = 255), verbose_name = 'لیست عکس های محصول', null = True, blank = True)
     point = models.FloatField(verbose_name = 'امتیاز', default = 0.0)
     price = models.CharField(verbose_name = 'قیمت', max_length = 15)
     discount = models.PositiveSmallIntegerField(verbose_name = 'درصد تخفیف محصول', default = 0)
-    inventory = models.PositiveSmallIntegerField(verbose_name = 'موجودی محصول', default = 0)
+    inventory = models.PositiveSmallIntegerField(verbose_name = 'موجودی محصول', default = 20)
     attributes = JSONField(verbose_name = 'لیست ویژگی ها', null = True, blank = True)
     createdate = models.DateTimeField(verbose_name = 'تاریخ ثبت', auto_now_add = True)
     PUBLISH_STATUS = (
@@ -203,8 +203,8 @@ class Product(models.Model):
         # convert data
         for item in attribute_list:
             this_item = {
-                "title": item[0],
-                "value": item[1]
+                "title": item,
+                "value": attribute_list[item]
             }
             data['attributes'].append(this_item)
 
