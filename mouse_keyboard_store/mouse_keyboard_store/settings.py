@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'oauth2_provider',
     'rest_framework',
     'shop',
+    'blog',
 ]
 
 AUTH_USER_MODEL = 'shop.User'
@@ -82,7 +83,7 @@ WSGI_APPLICATION = 'mouse_keyboard_store.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# # Postgersql Local DB
+# Postgersql Local DB
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
@@ -100,9 +101,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'dbmousekeyboardstore',
         'USER': 'root',
-        'PASSWORD': 'pTQYfXAK2jOE2WlZQuUWLhli',
+        'PASSWORD': 'Yhed2cs4gr9fqenYqJgl8lS9',
         'HOST' : 'tommy.iran.liara.ir',
-        'PORT' : '31716',
+        'PORT' : '30999',
     }
 }
 

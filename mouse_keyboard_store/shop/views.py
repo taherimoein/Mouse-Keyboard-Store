@@ -14,6 +14,21 @@ def get_random_product_list():
     while (count != 0) and (len(result) != 6):
         random_item = random.randint(0, (count - 1))
         result.append(product_list[random_item])
+        product_list.remove(product_list[random_item])
+        count -= 1
+
+    return result
+
+# get random disproduct list
+def get_random_disproduct_list():
+    product_list = list(Product.objects.filter(discount__gt = 0, publish = True))
+    result = []
+    count = len(product_list)
+
+    while (count != 0) and (len(result) != 8):
+        random_item = random.randint(0, (count - 1))
+        result.append(product_list[random_item])
+        product_list.remove(product_list[random_item])
         count -= 1
 
     return result
@@ -22,7 +37,7 @@ def index(request):
     # get random products
     random_products = get_random_product_list()
     # get top products
-    top_products = Product.objects.filter(discount__gte = 0, publish = True)[:8]
+    top_products = get_random_disproduct_list()
  
     context = {
         'Random_Products' : random_products,
@@ -41,7 +56,7 @@ def about_us(request):
 # def add_products_to_db(request):
 
 #     # read json file
-#     with open("data_mouse.json", encoding = 'utf8') as data:
+#     with open("mouse_keyboard_store/data_keyboards.json", encoding = 'utf8') as data:
 #         this_file = json.load(data)
 #     # add data to db
 #     print(str(len(this_file)))

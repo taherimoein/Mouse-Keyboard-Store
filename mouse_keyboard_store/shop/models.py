@@ -138,7 +138,7 @@ class User (AbstractBaseUser):
 
 # Slider (اسلایدر) Model
 class Slider(models.Model): 
-    title = models.CharField(verbose_name = 'عنوان', max_length = 255)
+    title = models.CharField(verbose_name = 'عنوان', unique = True, max_length = 255)
     description = models.TextField(verbose_name = 'توضیحات')
     url = models.URLField(verbose_name = 'لینک', null = True, blank = True)
     image = models.ImageField(verbose_name = 'عکس', upload_to = 'media/images/slider/')
@@ -178,7 +178,7 @@ class OptionMeta(models.Model):
 
 # Product (محصول) Model
 class Product(models.Model):
-    title = models.CharField(verbose_name = 'عنوان', max_length = 255)
+    title = models.CharField(verbose_name = 'عنوان', unique = True, max_length = 255)
     description = models.TextField(verbose_name = 'توضیحات', blank = True)
     top_image = models.URLField(verbose_name = 'عکس شاخص', null = True, max_length = 255)
     image_list = ArrayField(models.URLField(max_length = 255), verbose_name = 'لیست عکس های محصول', null = True, blank = True)
