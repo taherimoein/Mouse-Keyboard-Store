@@ -23,6 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'ymljg0=w&0(%_-f2ouqn^@8rze*7-ovj2jh_t6tc%rx9$p=b(#'
 
+LOGIN_URL = '/'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -42,7 +44,10 @@ INSTALLED_APPS = [
     'oauth2_provider',
     'rest_framework',
     'shop',
+    'blog',
 ]
+
+AUTH_USER_MODEL = 'shop.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -79,14 +84,26 @@ WSGI_APPLICATION = 'mouse_keyboard_store.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 # Postgersql Local DB
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'dbmousekeyboardstore',
+#         'USER': 'postgres',
+#         'PASSWORD': 'moein@taheri',
+#         'HOST' : 'localhost',
+#         'PORT' : '5432',
+#     }
+# }
+
+# Postgersql Liara DB
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'dbmousekeyboardstore',
-        'USER': 'postgres',
-        'PASSWORD': 'moein@taheri',
-        'HOST' : 'localhost',
-        'PORT' : '5432',
+        'USER': 'root',
+        'PASSWORD': 'Yhed2cs4gr9fqenYqJgl8lS9',
+        'HOST' : 'tommy.iran.liara.ir',
+        'PORT' : '30999',
     }
 }
 
