@@ -222,3 +222,15 @@ class Product(models.Model):
         verbose_name_plural = "محصولات"
 
 #----------------------------------------------------------------------------------------------------------------------------------------
+
+# Validation (اعتبار سنجی) Model   
+class Validation(models.Model):
+    mobile = models.CharField(verbose_name = 'شماره موبایل', max_length = 11, unique = True)
+    valid_code = models.CharField(verbose_name = 'کد فعال سازی', max_length = 6, null = True)
+    status = models.BooleanField(verbose_name = 'وضعیت', default = False)
+    date = models.DateTimeField(verbose_name = 'تاریخ و زمان', auto_now_add = True)
+
+    class Meta:
+        ordering = ('id',)
+    
+# --------------------------------------------------------------------------------------------------------------------------------------

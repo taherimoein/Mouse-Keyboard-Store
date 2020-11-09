@@ -98,18 +98,18 @@
 				</h4>
 
 				<form>
+					{% csrf_token %}
 					<div class="effect1 w-size9">
-						<input class="s-text7 bg6 w-full p-b-5" type="text" name="email" placeholder="email@example.com">
+						<input class="s-text7 bg6 w-full p-b-5" type="email" name="email" id="input_email" placeholder="email@example.com">
 						<span class="effect1-line"></span>
 					</div>
 
 					<div class="w-size2 p-t-20">
 						<!-- Button -->
-						<button class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
-							عضویت
-						</button>
+						<a class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
+							<span id="add-new-email">عضویت</span>
+						</a>
 					</div>
-
 				</form>
 			</div>
 		</div>
@@ -153,4 +153,32 @@
 		<script src="../static/js/main.js"></script>
 	<!--===============================================================================================-->
 		<script type="text/javascript" src="../static/vendor/select2/select2.min.js"></script>
+	<!--===============================================================================================-->
+		<script text="javascripts">
+			$("#add-new-email").on("click", function (e) {
+			var  this_email = $('#input_email').val();
+			
+			$.ajax(
+				{
+				type: 'POST',
+				url: '{% url "shop:add_to_newsletters" %}',
+				data: {
+					email: this_email,
+					csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+				},
+				success: function (json) {
+					if (json.message == '201') {
+						alert('شما با موفقیت در خبرنامه عضو شدید.');
+					}
+					else if (json.message == '200') {
+						alert('شما قبلا در خبرنامه عضو شدید!');
+					}	
+				},
+				error: function (xhr) {
+					alert(xhr.status + ": " + xhr.responseText);
+				}
+				}
+			);      
+			});
+		</script>
 	<!--===============================================================================================-->

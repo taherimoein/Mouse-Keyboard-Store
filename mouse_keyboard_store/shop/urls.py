@@ -1,5 +1,5 @@
 from django.urls import path, re_path 
-from . import views
+from . import views, ajaxviews
 
 app_name = 'shop'
 urlpatterns = [
@@ -15,4 +15,8 @@ urlpatterns = [
     path('signin/', views.sign_in, name = 'sign_in_page'),
     # Sing up Path <----->
     path('signup/', views.sign_up, name = 'sign_up_page'),
+
+    # <====================================================================================>
+    # Add To Newsletters Path <----->
+    path('add/new-email/', ajaxviews.add_to_newsletters, name = 'add_to_newsletters'),
 ]
