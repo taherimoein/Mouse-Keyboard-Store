@@ -139,8 +139,13 @@ class User (AbstractBaseUser):
 # Slider (اسلایدر) Model
 class Slider(models.Model): 
     title = models.CharField(verbose_name = 'عنوان', unique = True, max_length = 255)
-    description = models.TextField(verbose_name = 'توضیحات')
-    url = models.URLField(verbose_name = 'لینک', null = True, blank = True)
+    POSITION_TYPE = (
+        ('0','اسلایدر-صفحه اصلی'),
+        ('1','بنر-وسط صفحه اصلی'),
+        ('2','اسلایدر-صفحه درباره ما'),
+        ('3','بنر-درباره ما'),
+    )
+    position = models.CharField(verbose_name = 'موقعیت مکانی', max_length = 1, choices = POSITION_TYPE, default = '0')
     image = models.ImageField(verbose_name = 'عکس', upload_to = 'media/images/slider/')
     datecreate = models.DateTimeField(verbose_name = 'تاریخ بارگذاری', auto_now_add = True)
     dtatupdate = models.DateTimeField(verbose_name = 'تاریخ بروزرسانی', auto_now = True)
