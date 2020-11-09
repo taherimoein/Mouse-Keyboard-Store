@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up Form by Colorlib</title>
+    <title>Sign Up</title>
 
     <!-- Font Icon -->
     <link rel="stylesheet" href="../static/fonts/material-icon/css/material-design-iconic-font.min.css">
@@ -24,8 +24,12 @@
                         <h2 class="form-title">ایجاد حساب</h2>
                         <form method="POST" class="register-form" id="register-form">
                             <div class="form-group">
-                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="name" id="name" placeholder=" نام و نام خانوادگی"/>
+                                <label for="first-name"><i class="zmdi zmdi-name material-icons-name"></i></label>
+                                <input type="text" name="first-name" id="first-name" placeholder=" نام"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="last-name"><i class="zmdi zmdi-name material-icons-name"></i></label>
+                                <input type="text" name="last-name" id="last-name" placeholder=" نام خانوادگی"/>
                             </div>
                             <div class="form-group">
                                 <label for="email"><i class="zmdi zmdi-email"></i></label>
@@ -47,10 +51,10 @@
                                 <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
                                 <input type="password" name="re_pass" id="re_pass" placeholder="تکرار رمز عبور"/>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
                                 <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
-                            </div>
+                            </div> -->
                             <div class="form-group form-button">
                                 <input type="submit" name="signup" id="signup" class="form-submit" value="ثبت نام"/>
                             </div>
@@ -58,7 +62,6 @@
                     </div>
                     <div class="signup-image">
                         <figure><img src="../static/img/signup-image.jpg" alt="sing up image"></figure>
-                        <!-- <a href="#" class="signup-image-link">I am already member</a> -->
                     </div>
                 </div>
             </div>
@@ -68,5 +71,5 @@
     <!-- JS -->
     <script src="../static/vendor/jquery/jquery-3.2.1.min.js"></script>
     <script src="js/main.js"></script>
-</body>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>

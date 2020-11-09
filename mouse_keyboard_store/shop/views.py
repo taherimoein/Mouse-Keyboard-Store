@@ -52,6 +52,16 @@ def about_us(request):
     return render(request, 'shop/about.html')
 
 
+def sign_in(request):
+
+    return render(request, 'registration/signin.html')
+
+
+def sign_up(request):
+
+    return render(request, 'registration/signup.html')
+
+
 # # add products to db
 # def add_products_to_db(request):
 
