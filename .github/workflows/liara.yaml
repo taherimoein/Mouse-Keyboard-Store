@@ -1,4 +1,4 @@
-name: CD-Example
+name: kms
 on:
   push:
     branches: [main]
