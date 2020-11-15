@@ -173,3 +173,11 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
     ),
 }
+
+#EMAIL SMTP
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.iran.liara.ir'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'kms'
+EMAIL_HOST_PASSWORD = '53e0210a-9db3-4c37-9c16-3caf85acf2d5'

@@ -774,6 +774,12 @@ li.sale-noti > a {
   cursor: pointer;
 }
 
+.profileimg{
+  width: 30px;
+  height: 30px !important;
+  border-radius: 50%;
+}
+
 .header-icons-noti {
   display: -webkit-box;
   display: -webkit-flex;

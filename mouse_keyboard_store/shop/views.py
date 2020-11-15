@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Product
+from .models import Product, Slider
 import json, random
 
 
@@ -38,18 +38,40 @@ def index(request):
     random_products = get_random_product_list()
     # get top products
     top_products = get_random_disproduct_list()
+    # get sliders
+    sliders = Slider.objects.filter(position = 0, publish = True)
+    # get ads banner
+    ads_banner = Slider.objects.filter(position = 1, publish = True)
  
     context = {
         'Random_Products' : random_products,
         'Top_Products' : top_products,
+        'AdsBanner' : ads_banner,
+        'Sliders' : sliders,
     }
 
     return render(request, 'shop/index.html', context)
 
 
 def about_us(request):
+    # get sliders
+    top_slider = Slider.objects.get(position = 2, publish = True)
 
-    return render(request, 'shop/about.html')
+    context = {
+        'Slider' : top_slider,
+    }
+
+    return render(request, 'shop/about.html', context)
+
+
+def sign_in(request):
+
+    return render(request, 'registration/signin.html')
+
+
+def sign_up(request):
+
+    return render(request, 'registration/signup.html')
 
 
 # # add products to db

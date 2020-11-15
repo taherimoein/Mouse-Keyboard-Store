@@ -10,6 +10,7 @@ class Blog(models.Model):
     title = models.CharField(verbose_name = 'عنوان', max_length = 255)
     slug = models.SlugField(verbose_name = 'شناسه')
     summary = models.CharField(verbose_name = 'خلاصه', max_length = 300)
+    author = models.CharField(verbose_name = 'نویسنده', max_length = 450, null = True, blank = True)
     code = models.TextField(verbose_name = 'کد HTML')
     top_image = models.ImageField(verbose_name = 'عکس شاخص', upload_to = 'media/images/blog/')
     slider = models.ImageField(verbose_name = 'اسلایدر', upload_to = 'media/images/blog/slider/')

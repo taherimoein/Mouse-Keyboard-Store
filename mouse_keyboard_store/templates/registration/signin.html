@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign In</title>
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="../static/fonts/material-icon/css/material-design-iconic-font.min.css">
+    <!-- Main css -->
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+
+    <div class="main">
+
+        <!-- Sign in form -->
+        <section class="sign-in">
+            <div class="container">
+                <div class="signin-content">
+                    <div class="signin-image">
+                        <figure><img src="../static/img/signin-image.jpg" alt="sing up image"></figure>
+                        <a href="/signup/" class="more-stories text-a">ایجاد حساب</a>
+                    </div>
+                    <div class="errorbox">
+                        <p id ="errorbox-txt" style="font-weight: 900; color: red;"></p>
+                    </div>
+                    <div class="signin-form">
+                        <h2 class="form-title">ورود به حساب</h2>
+                        <form method="POST" class="register-form" id="login-form">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="input_mobilenumber"><i class="zmdi zmdi-phone"></i></label>
+                                <input type="text" name="input_mobilenumber" id="input_mobilenumber" placeholder="شماره موبایل"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="input_password"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="input_password" id="input_password" placeholder="رمز عبور"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                                <label for="remember-me" class="label-agree-term"><span><span></span></span>مرا به خاطر بسپار</label>
+                            </div>
+                            <div class="form-group form-button">
+                                <a type="submit" name="signin" id="signin" class="form-submit">ورود</a>
+                            </div>
+                        </form>
+                        <!-- <div class="social-login">
+                            <span class="social-label"><strong>ورود با شبکه های اجتماعی</strong></span>
+                            <ul class="socials">
+                                <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
+                                <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
+                                <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
+                            </ul>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- JS -->
+    <script src="../static/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="../static/js/main.js"></script>
+    <!-- Ajax -->
+    <script text="javascripts">
+        $("#signin").on("click", function (e) {
+            var  MobileNumber = $('#input_mobilenumber').val();
+            var  PasswordUser = $('#input_password').val();
+            if ($('#remember-me').is(":checked")){
+                var  RememberMe = '1'
+            }
+            else{
+                var  RememberMe = '0'
+            }
+            console.log(MobileNumber);
+            console.log(PasswordUser);
+            console.log(RememberMe);
+            $.ajax(
+                {
+                    type: 'POST',
+                    url: '{% url "shop:ajax_singin" %}',
+                    data: {
+                        mobile: MobileNumber,
+                        password: PasswordUser,
+                        remember_me: RememberMe,
+                        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                    },
+                    success: function (json) {
+                        if (json.status == true) {
+                            if (json.message == '200') {
+                                $('.errorbox').hide();
+                                var base_url = "{{BASE_URL}}" + json.next;
+                                window.location.href = base_url;
+                            }
+                            else if (json.message == '400') {
+                                console.log('400');
+                                $('#errorbox-txt').html('شماره موبایل یا رمز عبور شما اشتباه می باشد.');
+                                $('.errorbox').show();
+                            }
+                        }
+                        else {
+                            console.log(json.message);
+                            $('errorbox-txt').text();
+                            $('.errorbox').show();
+                        }
+                    },
+                    error: function (xhr) {
+                        console.log(xhr.status + ": " + xhr.responseText);
+                    }
+                }
+            );      
+        })
+    </script>
+</body>
+</html>
