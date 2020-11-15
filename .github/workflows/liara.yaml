@@ -16,4 +16,4 @@ jobs:
         run: |
           npm i -g @liara/cli@2
           liara login --region iran --email moeintaheri.1998@gmail.com --password narjes81475177@taheri 
-          liara deploy --region iran --detach
+          liara deploy --detach
