@@ -1,5 +1,4 @@
 <body class="animsition">
-
 	<!-- Header -->
 	<header class="header1">
 		<!-- Header desktop -->
@@ -40,9 +39,16 @@
 
 				<!-- Header Icon -->
 				<div class="header-icons">
-					<a href="/signin/" class="header-wrapicon1 dis-block">
-						<img src="../static/img/icons/icon-header-01.png" class="header-icon1" alt="ICON">
+					<a {% if not request.user.is_authenticated %}href="/signin/"{% else %}href="/singout/"{% endif %} class="header-wrapicon1 dis-block" id="user-account">
+						<img {% if not request.user.is_authenticated %}src="../static/img/icons/icon-header-01.png"{% else %}src="{{request.user.profile.url}}"{% endif %} class="header-icon1 {% if request.user.is_authenticated %}profileimg{% endif %}" alt="ICON">
 					</a>
+					<!-- {% if request.user.is_authenticated %}
+						<ul class="sub-menu" id="header-menu">
+							<li><a href="index.html">Homepage V1</a></li>
+							<li><a href="home-02.html">Homepage V2</a></li>
+							<li><a href="home-03.html">Homepage V3</a></li>
+						</ul>
+					{% endif %} -->
 
 					{% if request.user.is_authenticated %}
 						<span class="linedivide1"></span>

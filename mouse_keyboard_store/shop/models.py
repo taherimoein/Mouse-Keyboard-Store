@@ -144,6 +144,7 @@ class Slider(models.Model):
         ('1','بنر-وسط صفحه اصلی'),
         ('2','اسلایدر-صفحه درباره ما'),
         ('3','بنر-درباره ما'),
+        ('4','اسلایدر- صفحه بلاگ'),
     )
     position = models.CharField(verbose_name = 'موقعیت مکانی', max_length = 1, choices = POSITION_TYPE, default = '0')
     image = models.ImageField(verbose_name = 'عکس', upload_to = 'media/images/slider/')

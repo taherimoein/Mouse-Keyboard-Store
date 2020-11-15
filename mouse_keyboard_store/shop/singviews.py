@@ -8,6 +8,7 @@ from django.contrib.sessions.models import Session
 from rest_framework.response import Response
 from django.shortcuts import redirect
 from django.http import JsonResponse
+from django.shortcuts import render
 from django.utils import timezone
 from django.conf import settings
 from rest_framework.status import (
@@ -140,14 +141,11 @@ def singin(request):
 
 # account signout //req : request //result: ({'status' : (True, False)}) OR error
 def signout(request):
-    response_data = {}
     if request.user.is_authenticated: 
         logout(request)
-        response_data['status'] = True
-        return JsonResponse(response_data)
+        return redirect("shop:index_page")
     else:
-        response_data['status'] = False
-        return JsonResponse(response_data)
+        return redirect("shop:index_page")
 
 
 

@@ -59,3 +59,19 @@ def add_to_newsletters(request):
             return JsonResponse({'status' : True, 'message' : '201'} , status = HTTP_201_CREATED)
     except Exception as e:
         return JsonResponse({'status' : False, 'message' : str(e)}, status = HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+# set session
+def set_session(request):
+    response_data = {}
+    try:
+        this_path = request.POST['this_path']
+        # get path other than non-account path 
+        if not ((this_path == '/signin/') or (this_path == '/signup/') or (this_path == '/forgotpassword/')):
+            request.session['next'] = this_path
+        response_data['status'] = True
+        return JsonResponse(response_data)
+    except Exception as e:
+        response_data['status'] = False
+        response_data['message'] = str(e)
+        return JsonResponse(response_data)
