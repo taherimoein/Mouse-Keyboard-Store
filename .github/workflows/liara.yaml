@@ -1,4 +1,4 @@
-name: kms
+name: Mouse-Keyboard-Store
 on:
   push:
     branches: [main]
@@ -13,7 +13,7 @@ jobs:
           node-version: "12"
       - name: update-liara
         env:
-          LIARA_TOKEN: ${{ secrets.LIARA_API_TOKEN }}
+            LIARA_TOKEN: ${{ secrets.LIARA_API_TOKEN }}
         run: |
           npm i -g @liara/cli@2
           liara deploy --api-token="$LIARA_TOKEN" --region iran --detach
