@@ -1,0 +1,14 @@
+{
+    "platform": "django",
+    "app": "kms",
+    "disks": [
+      {
+        "name": "kms-media",
+        "mountTo": "media"
+      },
+      {
+        "name": "kms-static",
+        "mountTo": "staticfiles"
+      }
+    ]
+  }
