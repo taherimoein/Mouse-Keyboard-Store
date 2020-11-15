@@ -1,4 +1,4 @@
-name: kms
+name: Mouse-Keyboard-Store
 on:
   push:
     branches: [main]
