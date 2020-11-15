@@ -12,8 +12,8 @@ jobs:
         with:
           node-version: "12"
       - name: update-liara
-
+        env:
+            LIARA_TOKEN: ${{ secrets.LIARA_API_TOKEN }}
         run: |
           npm i -g @liara/cli@2
-          liara login --region iran --email moeintaheri.1998@gmail.com --password narjes81475177@taheri 
-          liara deploy
+          liara deploy --api-token="$LIARA_TOKEN" --region iran --detach
