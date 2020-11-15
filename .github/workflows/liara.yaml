@@ -12,7 +12,8 @@ jobs:
         with:
           node-version: "12"
       - name: update-liara
-      
+
         run: |
           npm i -g @liara/cli@2
+          liara login --email moeintaheri.1998@gmail.com --password narjes81475177@taheri 
           liara deploy --region iran --detach
