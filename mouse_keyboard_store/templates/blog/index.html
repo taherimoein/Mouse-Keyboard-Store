@@ -4,16 +4,15 @@
 	{% include "parents/head.html" %}
 {% endblock %}
 
+<title>Blog</title>
+</head>
+
 {% block header %}
 	{% include "parents/header-section.html" %}
 {% endblock %}
 
 <!-- Title Page -->
-<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(../static/img/heading-pages-05.jpg);">
-	<h2 class="l-text2 t-center">
-		بلاگ
-	</h2>
-</section>
+<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url({{Slider.image.url}});"></section>
 
 <!-- content page -->
 <section class="bgwhite p-t-60">
