@@ -14,15 +14,15 @@
 					<nav class="menu">
 						<ul class="main_menu">
 							<li>
-								<a href="#">تماس با ما</a>
+								<a href="{% url "shop:contact_us_page" %}">تماس با ما</a>
 							</li>
 
 							<li>
-								<a href="/about-us/">درباره ما</a>
+								<a href="{% url "shop:about_us_page" %}">درباره ما</a>
 							</li>
 
 							<li>
-								<a href="/blog/">بلاگ</a>
+								<a href="{% url "blog:allblog_page" %}">بلاگ</a>
 							</li>
 
 							<li class="sale-noti">

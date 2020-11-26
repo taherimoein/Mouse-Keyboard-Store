@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Product, Slider
+from blog.models import Blog
 import json, random
 
 
@@ -42,11 +43,14 @@ def index(request):
     sliders = Slider.objects.filter(position = 0, publish = True)
     # get ads banner
     ads_banner = Slider.objects.filter(position = 1, publish = True)
+    # get blog post
+    blog_posts = Blog.objects.filter(publish = True).order_by('-datecreate')[:3]
  
     context = {
         'Random_Products' : random_products,
         'Top_Products' : top_products,
         'AdsBanner' : ads_banner,
+        'BlogList' : blog_posts,
         'Sliders' : sliders,
     }
 
@@ -62,6 +66,17 @@ def about_us(request):
     }
 
     return render(request, 'shop/about.html', context)
+
+
+def contact_us(request):
+    # get sliders
+    # top_slider = Slider.objects.get(position = 2, publish = True)
+
+    context = {
+        # 'Slider' : top_slider,
+    }
+
+    return render(request, 'shop/contact.html', context)
 
 
 def sign_in(request):

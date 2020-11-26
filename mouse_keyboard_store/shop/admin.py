@@ -1,11 +1,19 @@
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 from .models import User, UserManager, Slider, OptionMeta, Product
+from blog.models import Blog
 
 User = get_user_model()
 # Main Section Title
 admin.site.site_header = 'Viscal'
 # --------------------------------
+# Blog Admin Section
+@admin.register(Blog)
+class BlogAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug', 'summary', 'author', 'datecreate', 'publish')
+    search_fields = ['title', 'slug', 'summary']
+    list_filter = ('publish',)
+    ordering = ['id', 'datecreate']
 # Slider Admin Section
 @admin.register(Slider)
 class SliderAdmin(admin.ModelAdmin):

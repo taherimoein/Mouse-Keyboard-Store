@@ -75,3 +75,34 @@ def set_session(request):
         response_data['status'] = False
         response_data['message'] = str(e)
         return JsonResponse(response_data)
+
+
+# add connect us
+@csrf_exempt
+@api_view(["POST"])
+@permission_classes([AllowAny])
+def add_new_connectus(request):
+    try:
+        # get data
+        this_name = request.POST.get("this_fullname")
+        this_mobile = request.POST.get("this_mobile")
+        this_email = request.POST.get("this_email")
+        this_message = request.POST.get("this_message")
+        # check data
+        if (len(this_name) > 0) and ((len(this_mobile) > 0) or (len(this_email) > 0)) and (len(this_message) > 0):
+            # create new connect us
+            this_connectus = Contactus.objects.create(full_name = this_name, description = this_message)
+            # check mobile
+            if this_mobile != 'null':
+                this_connectus.mobile = this_mobile
+            # check email
+            if this_email != 'null':
+                this_connectus.email = this_email
+            # save data
+            this_connectus.save()
+
+            return JsonResponse({'status' : True}, status = HTTP_201_CREATED)
+        else:
+            return JsonResponse({'status' : False, 'message' : 'Input data is incomplete'}, status = HTTP_400_BAD_REQUEST)
+    except Exception as e:
+        return JsonResponse({'status' : False, 'message' : str(e)}, status = HTTP_500_INTERNAL_SERVER_ERROR)

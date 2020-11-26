@@ -235,3 +235,38 @@ class Validation(models.Model):
         ordering = ('id',)
     
 # --------------------------------------------------------------------------------------------------------------------------------------
+
+# Contact us (ارتباط با ما) Model
+class Contactus(models.Model):
+    full_name = models.CharField(verbose_name = 'نام و نام خانوادگی', max_length = 255)
+    email = models.EmailField(verbose_name = 'ایمیل', null = True)
+    mobile = models.CharField(verbose_name = 'موبایل', max_length = 11, null = True)
+    description = models.TextField(verbose_name = 'توضیحات')
+    createdate = models.DateTimeField(verbose_name = 'تاریخ', auto_now_add = True)
+    SEEN_STATUS = (
+        ('0','خوانده نشده'),
+        ('1','در حال بررسی'),
+        ('2','بررسی شده'),
+    )
+    status = models.CharField(verbose_name = 'وضعیت', max_length = 1, choices = SEEN_STATUS, default = '0')
+
+    def __str__(self):
+        if (self.email != None) and (self.mobile == None):
+            return "{} - {}  ({} - {}) ".format(self.full_name, self.email, self.createdate, self.get_status)
+        elif (self.email == None) and (self.mobile != None):
+            return "{} - {}  ({} - {})".format(self.full_name, self.mobile, self.createdate, self.get_status)
+        else:
+            return "{} - {} - {} ({} - {})".format(self.full_name, self.mobile, self.email, self.createdate, self.get_status)
+
+    def get_status(self):
+        status_type = {
+            "0" : 'خوانده نشده',
+            "1" : 'در حال بررسی',
+            "2" : 'بررسی شده',
+        }
+        return status_type[self.status]
+    
+    class Meta:
+        ordering = ('id',)
+        verbose_name = "ارتباط با ما"
+        verbose_name_plural = "ارتباط های با ما" 

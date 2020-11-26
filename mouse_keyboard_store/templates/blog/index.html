@@ -21,230 +21,67 @@
 			<div class="col-md-8 col-lg-9 p-b-75">
 				<div class="p-r-50 p-r-0-lg">
 					<!-- item blog -->
-					<div class="item-blog p-b-80">
-						<a href="blog-detail.html" class="item-blog-img pos-relative dis-block hov-img-zoom">
-							<img src="../static/img/blog-04.jpg" alt="IMG-BLOG">
+					{% for item in PostList %}
+						<div class="item-blog p-b-80">
+							<a href="blog-detail.html" class="item-blog-img pos-relative dis-block hov-img-zoom">
+								<img src="{{item.slider.url}}" alt="IMG-BLOG">
 
-							<span class="item-blog-date dis-block flex-c-m pos1 size17 bg4 s-text1">
-								28 Dec, 2018
-							</span>
-						</a>
-
-						<div class="item-blog-txt p-t-33">
-							<h4 class="p-b-11">
-								<a href="blog-detail.html" class="m-text24">
-									پردازنده مرکزی اینتل سری Skylake مدل Core i5-6500
-								</a>
-							</h4>
-
-							<div class="s-text8 flex-w flex-m p-b-21">
-								<span>
-									By Admin
-									<span class="m-l-3 m-r-6">|</span>
+								<span class="item-blog-date dis-block flex-c-m pos1 size17 bg4 s-text1">
+									{{item.datecreate.date}}
 								</span>
-
-								<span>
-									موس های جدید
-									<span class="m-l-3 m-r-6">|</span>
-								</span>
-
-								<span>
-									8 Comments
-								</span>
-							</div>
-
-							<p class="p-b-12">
-								کیس کامپیوتر «C300» سری حرفه ای ،خاص و شاهکاری از برند گیگابایت آروس است. Aorus C300 Glass فضای داخلی بسیار مناسبی دارد و می‌توانید مادربردهای حرفه ای را در اندازه های مختلف mini-ITX/m-ATX/ATX به ‌آسانی درون C300 جای دهید.امکان نصب کارت‌های گرافیکی حرفه ای، مزیت دیگری است که این کیس به همراه دارد. می‌توان تا 7 عدد کارت PCIE یا 2 کارت گرافیکی با طول 400 میلی‌متر سایز بزرگ را به ‌راحتی در C300 نصب کرد و یک سیستم بسیار قدرتمند را شکل داد.	
-							</p>
-
-							<a href="blog-detail.html" class="s-text20">
-								بیشتر بخوانید
-								<i class="fa fa-long-arrow-right m-l-8" aria-hidden="true"></i>
 							</a>
-						</div>
-					</div>
 
-					<!-- item blog -->
-					<div class="item-blog p-b-80">
-						<a href="blog-detail.html" class="item-blog-img pos-relative dis-block hov-img-zoom">
-							<img src="../static/img/blog-05.jpg" alt="IMG-BLOG">
+							<div class="item-blog-txt p-t-33">
+								<h4 class="p-b-11">
+									<a href="blog-detail.html" class="m-text24">
+										{{item.title}}
+									</a>
+								</h4>
 
-							<span class="item-blog-date dis-block flex-c-m pos1 size17 bg4 s-text1">
-								26 Dec, 2018
-							</span>
-						</a>
+								<div class="s-text8 flex-w flex-m p-b-21">
+									<span>
+										{{item.author}}
+										<!-- <span class="m-l-3 m-r-6">|</span> -->
+									</span>
 
-						<div class="item-blog-txt p-t-33">
-							<h4 class="p-b-11">
-								<a href="blog-detail.html" class="m-text24">
-									The White Sneakers Nearly Every Fashion Girls Own
+									<!-- <span>
+										موس های جدید
+										<span class="m-l-3 m-r-6">|</span>
+									</span> -->
+
+									<!-- <span>
+										8 Comments
+									</span> -->
+								</div>
+
+								<p class="p-b-12">
+									{{item.summary}}
+								</p>
+
+								<a href="blog-detail.html" class="s-text20">
+									بیشتر بخوانید
+									<i class="fa fa-long-arrow-right m-l-8" aria-hidden="true"></i>
 								</a>
-							</h4>
-
-							<div class="s-text8 flex-w flex-m p-b-21">
-								<span>
-									By Admin
-									<span class="m-l-3 m-r-6">|</span>
-								</span>
-
-								<span>
-									موس های جدید
-									<span class="m-l-3 m-r-6">|</span>
-								</span>
-
-								<span>
-									8 Comments
-								</span>
 							</div>
-
-							<p class="p-b-12">
-								کیس کامپیوتر «C300» سری حرفه ای ،خاص و شاهکاری از برند گیگابایت آروس است. Aorus C300 Glass فضای داخلی بسیار مناسبی دارد و می‌توانید مادربردهای حرفه ای را در اندازه های مختلف mini-ITX/m-ATX/ATX به ‌آسانی درون C300 جای دهید.امکان نصب کارت‌های گرافیکی حرفه ای، مزیت دیگری است که این کیس به همراه دارد. می‌توان تا 7 عدد کارت PCIE یا 2 کارت گرافیکی با طول 400 میلی‌متر سایز بزرگ را به ‌راحتی در C300 نصب کرد و یک سیستم بسیار قدرتمند را شکل داد.
-							</p>
-
-							<a href="blog-detail.html" class="s-text20">
-								بیشتر بخوانید
-								<i class="fa fa-long-arrow-right m-l-8" aria-hidden="true"></i>
-							</a>
 						</div>
-					</div>
-
-					<!-- item blog -->
-					<div class="item-blog p-b-80">
-						<a href="blog-detail.html" class="item-blog-img pos-relative dis-block hov-img-zoom">
-							<img src="../static/img/blog-08.jpg" alt="IMG-BLOG">
-
-							<span class="item-blog-date dis-block flex-c-m pos1 size17 bg4 s-text1">
-								22 Dec, 2018
-							</span>
-						</a>
-
-						<div class="item-blog-txt p-t-33">
-							<h4 class="p-b-11">
-								<a href="blog-detail.html" class="m-text24">
-									راهنمای جمعه سیاه: بهترین کدهای فروش و تخفیف
-								</a>
-							</h4>
-
-							<div class="s-text8 flex-w flex-m p-b-21">
-								<span>
-									By Admin
-									<span class="m-l-3 m-r-6">|</span>
-								</span>
-
-								<span>
-									موس های جدید
-									<span class="m-l-3 m-r-6">|</span>
-								</span>
-
-								<span>
-									8 Comments
-								</span>
-							</div>
-
-							<p class="p-b-12">
-								کیس کامپیوتر «C300» سری حرفه ای ،خاص و شاهکاری از برند گیگابایت آروس است. Aorus C300 Glass فضای داخلی بسیار مناسبی دارد و می‌توانید مادربردهای حرفه ای را در اندازه های مختلف mini-ITX/m-ATX/ATX به ‌آسانی درون C300 جای دهید.امکان نصب کارت‌های گرافیکی حرفه ای، مزیت دیگری است که این کیس به همراه دارد. می‌توان تا 7 عدد کارت PCIE یا 2 کارت گرافیکی با طول 400 میلی‌متر سایز بزرگ را به ‌راحتی در C300 نصب کرد و یک سیستم بسیار قدرتمند را شکل داد.
-							</p>
-
-							<a href="blog-detail.html" class="s-text20">
-								بیشتر بخوانید
-								<i class="fa fa-long-arrow-right m-l-8" aria-hidden="true"></i>
-							</a>
-						</div>
-					</div>
-
-					<!-- item blog -->
-					<div class="item-blog p-b-80">
-						<a href="blog-detail.html" class="item-blog-img pos-relative dis-block hov-img-zoom">
-							<img src="../static/img/blog-02.jpg" alt="IMG-BLOG">
-
-							<span class="item-blog-date dis-block flex-c-m pos1 size17 bg4 s-text1">
-								18 Dec, 2018
-							</span>
-						</a>
-
-						<div class="item-blog-txt p-t-33">
-							<h4 class="p-b-11">
-								<a href="blog-detail.html" class="m-text24">
-									راهنمای جمعه سیاه: بهترین کدهای فروش و تخفیف
-								</a>
-							</h4>
-
-							<div class="s-text8 flex-w flex-m p-b-21">
-								<span>
-									By Admin
-									<span class="m-l-3 m-r-6">|</span>
-								</span>
-
-								<span>
-									موس های جدید
-									<span class="m-l-3 m-r-6">|</span>
-								</span>
-
-								<span>
-									8 Comments
-								</span>
-							</div>
-
-							<p class="p-b-12">
-								کیس کامپیوتر «C300» سری حرفه ای ،خاص و شاهکاری از برند گیگابایت آروس است. Aorus C300 Glass فضای داخلی بسیار مناسبی دارد و می‌توانید مادربردهای حرفه ای را در اندازه های مختلف mini-ITX/m-ATX/ATX به ‌آسانی درون C300 جای دهید.امکان نصب کارت‌های گرافیکی حرفه ای، مزیت دیگری است که این کیس به همراه دارد. می‌توان تا 7 عدد کارت PCIE یا 2 کارت گرافیکی با طول 400 میلی‌متر سایز بزرگ را به ‌راحتی در C300 نصب کرد و یک سیستم بسیار قدرتمند را شکل داد.
-							</p>
-
-							<a href="blog-detail.html" class="s-text20">
-								بیشتر بخوانید
-								<i class="fa fa-long-arrow-right m-l-8" aria-hidden="true"></i>
-							</a>
-						</div>
-					</div>
-
-					<!-- item blog -->
-					<div class="item-blog p-b-80">
-						<a href="blog-detail.html" class="item-blog-img pos-relative dis-block hov-img-zoom">
-							<img src="../static/img/blog-03.jpg" alt="IMG-BLOG">
-
-							<span class="item-blog-date dis-block flex-c-m pos1 size17 bg4 s-text1">
-								16 Dec, 2018
-							</span>
-						</a>
-
-						<div class="item-blog-txt p-t-33">
-							<h4 class="p-b-11">
-								<a href="blog-detail.html" class="m-text24">
-									راهنمای جمعه سیاه: بهترین کدهای فروش و تخفیف
-								</a>
-							</h4>
-
-							<div class="s-text8 flex-w flex-m p-b-21">
-								<span>
-									By Admin
-									<span class="m-l-3 m-r-6">|</span>
-								</span>
-
-								<span>
-									موس های جدید
-									<span class="m-l-3 m-r-6">|</span>
-								</span>
-
-								<span>
-									8 Comments
-								</span>
-							</div>
-
-							<p class="p-b-12">
-								کیس کامپیوتر «C300» سری حرفه ای ،خاص و شاهکاری از برند گیگابایت آروس است. Aorus C300 Glass فضای داخلی بسیار مناسبی دارد و می‌توانید مادربردهای حرفه ای را در اندازه های مختلف mini-ITX/m-ATX/ATX به ‌آسانی درون C300 جای دهید.امکان نصب کارت‌های گرافیکی حرفه ای، مزیت دیگری است که این کیس به همراه دارد. می‌توان تا 7 عدد کارت PCIE یا 2 کارت گرافیکی با طول 400 میلی‌متر سایز بزرگ را به ‌راحتی در C300 نصب کرد و یک سیستم بسیار قدرتمند را شکل داد.
-							</p>
-
-							<a href="blog-detail.html" class="s-text20">
-								بیشتر بخوانید
-								<i class="fa fa-long-arrow-right m-l-8" aria-hidden="true"></i>
-							</a>
-						</div>
-					</div>
+					{% endfor %}
 				</div>
 
 				<!-- Pagination -->
 				<div class="pagination flex-m flex-w p-r-50">
-					<a href="#" class="item-pagination flex-c-m trans-0-4 active-pagination">1</a>
-					<a href="#" class="item-pagination flex-c-m trans-0-4">2</a>
+					{% if PostList.has_previous %}
+						<a href="?page=1" class="item-pagination flex-c-m trans-0-4">اولی</a>
+						<a href="?page={{ PostList.previous_page_number }}" class="item-pagination flex-c-m trans-0-4">قبلی</a>
+					{% endif %}
+			
+					<span class="item-pagination flex-c-m trans-0-4 active-pagination" >
+						{{ PostList.number }}
+					</span>
+			
+					{% if PostList.has_next %}
+						<a href="?page={{ PostList.next_page_number }}" class="item-pagination flex-c-m trans-0-4">بعدی</a>
+						<a href="?page={{ PostList.paginator.num_pages }}" class="item-pagination flex-c-m trans-0-4">آخری</a>
+					{% endif %}
 				</div>
 			</div>
 
@@ -297,7 +134,7 @@
 					</ul>
 
 					<!-- Featured Products -->
-					<h4 class="m-text23 p-t-65 p-b-34">
+					<!-- <h4 class="m-text23 p-t-65 p-b-34">
 						Featured Products
 					</h4>
 
@@ -380,9 +217,9 @@
 								</span>
 							</div>
 						</li>
-					</ul>
+					</ul> -->
 
-					<!-- Archive -->
+					<!-- Archive
 					<h4 class="m-text23 p-t-50 p-b-16">
 						Archive
 					</h4>
@@ -467,10 +304,10 @@
 								(26)
 							</span>
 						</li>
-					</ul>
+					</ul> -->
 
 					<!-- Tags -->
-					<h4 class="m-text23 p-t-50 p-b-25">
+					<!-- <h4 class="m-text23 p-t-50 p-b-25">
 						برچسب ها
 					</h4>
 
@@ -494,7 +331,7 @@
 						<a href="#" class="tag-item">
 							محبوب ترین ها
 						</a>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>

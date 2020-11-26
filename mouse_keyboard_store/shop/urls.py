@@ -9,6 +9,8 @@ urlpatterns = [
     path('set-session', ajaxviews.set_session, name = 'set_session'),
     # About us Path <----->
     path('about-us/', views.about_us, name = 'about_us_page'),
+    # Contact us Path <----->
+    path('contact-us/', views.contact_us, name = 'contact_us_page'),
     # Sing in Path <----->
     path('signin/', views.sign_in, name = 'sign_in_page'),
     # Sing up Path <----->
@@ -23,4 +25,6 @@ urlpatterns = [
     # <====================================================================================>
     # Add To Newsletters Path <----->
     path('add/new-email/', ajaxviews.add_to_newsletters, name = 'add_to_newsletters'),
+    # add new connect us api <----->
+    path('add/connesct-us', ajaxviews.add_new_connectus , name = 'create_new_connectus_api'),
 ]
