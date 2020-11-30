@@ -90,6 +90,9 @@ class User (AbstractBaseUser):
     def has_module_perms(self, app_label):
         return True
 
+    def get_fullname(self):
+        return self.first_name + ' ' + self.last_name
+
     def save_address(self, state = None, city = None, address = None, zipcode = None):
         if self.address is None:
             if state is not None:
@@ -251,12 +254,8 @@ class Contactus(models.Model):
     status = models.CharField(verbose_name = 'وضعیت', max_length = 1, choices = SEEN_STATUS, default = '0')
 
     def __str__(self):
-        if (self.email != None) and (self.mobile == None):
-            return "{} - {}  ({} - {}) ".format(self.full_name, self.email, self.createdate, self.get_status)
-        elif (self.email == None) and (self.mobile != None):
-            return "{} - {}  ({} - {})".format(self.full_name, self.mobile, self.createdate, self.get_status)
-        else:
-            return "{} - {} - {} ({} - {})".format(self.full_name, self.mobile, self.email, self.createdate, self.get_status)
+        return "{}".format(self.full_name)
+
 
     def get_status(self):
         status_type = {

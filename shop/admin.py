@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth import get_user_model
-from .models import User, UserManager, Slider, OptionMeta, Product
+from .models import User, UserManager, Slider, OptionMeta, Product, Contactus
 from blog.models import Blog
 
 User = get_user_model()
@@ -14,6 +14,13 @@ class BlogAdmin(admin.ModelAdmin):
     search_fields = ['title', 'slug', 'summary']
     list_filter = ('publish',)
     ordering = ['id', 'datecreate']
+# Contactus Admin Section
+@admin.register(Contactus)
+class ContactusAdmin(admin.ModelAdmin):
+    list_display = ('full_name', 'email', 'mobile', 'createdate', 'status')
+    search_fields = ['full_name', 'email', 'mobile']
+    list_filter = ('status',)
+    ordering = ['id', 'createdate']
 # Slider Admin Section
 @admin.register(Slider)
 class SliderAdmin(admin.ModelAdmin):

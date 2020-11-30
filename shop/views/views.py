@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Product, Slider
+from shop.models import Product, Slider
 from blog.models import Blog
 import json, random
 

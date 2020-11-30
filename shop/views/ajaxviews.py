@@ -24,7 +24,7 @@ from kavenegar import *
 import threading, random, string, datetime
 
 # get model
-from shop.models import OptionMeta
+from shop.models import OptionMeta, Contactus
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

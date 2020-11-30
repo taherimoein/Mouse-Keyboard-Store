@@ -1,5 +1,5 @@
 from django.urls import path, re_path 
-from . import views, ajaxviews, singviews
+from .views import views, ajaxviews, singviews
 
 app_name = 'shop'
 urlpatterns = [
@@ -26,5 +26,5 @@ urlpatterns = [
     # Add To Newsletters Path <----->
     path('add/new-email/', ajaxviews.add_to_newsletters, name = 'add_to_newsletters'),
     # add new connect us api <----->
-    path('add/connesct-us', ajaxviews.add_new_connectus , name = 'create_new_connectus_api'),
+    path('add/connesct-us/', ajaxviews.add_new_connectus , name = 'create_new_connectus_api'),
 ]
