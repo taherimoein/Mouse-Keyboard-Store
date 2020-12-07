@@ -31,17 +31,30 @@
 				<form class="leave-comment" style="direction: rtl;">
 					{% csrf_token %}
 					<h4 class="m-text26 p-b-36 p-t-15" style="float: right;">برای ارتباط با ما لطفا فرم های زیر را پر کنید.</h4>
+					<div class="clearfix"></div>
+					<!-- Name Error -->
+					<div id="alert-div-input-username"></div>
+					<!-- Mobile Error -->
+					<div id="alert-div-input-mobile"></div>
+					<!-- Email Error -->
+					<div id="alert-div-input-email"></div>
+					<!-- Message Error -->
+					<div id="alert-div-input-message"></div>
+					<!-- Send Form Succfull -->
+					<div id="alert-div-send-succfull"></div>
+					<!-- Mobile Or Email Not Null -->
+					<div id="alert-div-input-empty-email-or-mobile"></div>
 					{% if not request.user.is_authenticated %}
 						<div class="bo4 of-hidden size15 m-b-20">
 							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="fullname" placeholder="نام و نام خانوادگی" id="input_fullname">
 						</div>
 					{% endif %}
 					<div class="bo4 of-hidden size15 m-b-20">
-						<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="phone-number" value="{{request.user.mobile}}" placeholder="شماره تلفن" id="input_mobile">
+						<input class="sizefull s-text7 p-l-22 p-r-22" type="number" name="phone-number" value="{{request.user.mobile}}" placeholder="شماره تلفن" id="input_mobile">
 					</div>
 
 					<div class="bo4 of-hidden size15 m-b-20">
-						<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="email" value="{{request.user.email}}" placeholder="ایمیل" id="input_email">
+						<input class="sizefull s-text7 p-l-22 p-r-22" type="email" name="email" value="{{request.user.email}}" placeholder="ایمیل" id="input_useremail">
 					</div>
 
 					<textarea class="dis-block s-text7 size20 bo4 p-l-22 p-r-22 p-t-13 m-b-20" name="message" placeholder="متن پیام" id="input_message"></textarea>
@@ -72,9 +85,9 @@
 			thisuser_fullname = $('#input_fullname').val();
 		}
 		var  thisuser_mobile = $('#input_mobile').val();
-		var  thisuser_email = $('#input_email').val();
+		var  thisuser_email = $('#input_useremail').val();
 		var  thisuser_message = $('#input_message').val();
-		if (check_fields(thisuser_fullname, thisuser_email, thisuser_mobile, thisuser_message)){
+		if (check_fields(thisuser_fullname)){
 			$.ajax(
 				{
 					type: 'POST',
@@ -90,20 +103,14 @@
 						if (xhr.status == 201) {
 							alert('پیام شما ثبت شد.');
 						}
-						else {
-							console.log(json.message);
-							$('errorbox-txt').text();
-							$('.errorbox').show();
-						}
 					},
 					error: function (xhr) {
+						alert('خطایی رخ داده است.');
 						console.log(xhr.status + ": " + xhr.responseText);
 					}
 				}
 			);  
-		}else{
-			alert('خطایی رخ داده است.');
-		}    
+		}
 	})
 </script>
 
