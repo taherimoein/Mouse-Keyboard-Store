@@ -89,6 +89,12 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 	box-sizing: border-box;
 }
 
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
 body, html {
 	height: 100%;
 	font-family: Montserrat-Regular, sans-serif;
@@ -1113,7 +1119,16 @@ li.sale-noti > a {
 
 .side-menu .sub-menu > li {
   padding-left: 12px;
-  padding-top: 
+}
+
+.inputshopempty {
+  background-color: #ffe5e5;
+}
+
+.inputshopempty:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255,10,0,0.25) !important;
+  border-color: #ff7c7c !important;    
+  background-color: #ffe5e5;
 }
 
 .side-menu .sub-menu a:hover {
@@ -2353,3 +2368,21 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 
+/* MOEIN */
+
+.alert {
+  padding: 10px;
+  box-shadow: 1px 1px 4px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  background: #ffe5e5;
+  color: #000;
+}
+
+.alert i {
+  margin-left: 10px;
+}
+
+.alert p {
+  display: inline;
+  color: #000;
+}
