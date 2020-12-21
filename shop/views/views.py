@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from shop.models import Product, Slider
+from django.shortcuts import render, redirect
+from shop.models import Product, Slider, Factor, FactorPost
 from blog.models import Blog
 import json, random
 
@@ -81,6 +81,29 @@ def about_us(request):
     }
 
     return render(request, 'shop/about.html', context)
+
+
+def show_cart(request):
+    if request.user.is_authenticated:
+        if Factor.objects.filter(FK_User = request.user, PaymentStatus = False).exists():
+            # get user last factor
+            this_factor = Factor.objects.get(FK_User = request.user, PaymentStatus = False)
+            for item in this_factor.FK_FactorPost.all():
+                if item.Endprice == 0:
+                    item.end_price()
+
+            context = {
+                'ThisFactor' : this_factor,
+            }
+
+            return render(request, 'shop/card.html', context)
+        else:
+            return redirect("shop:index_page")
+    else:
+        return redirect("shop:sign_in_page")
+
+
+
 
 
 def contact_us(request):

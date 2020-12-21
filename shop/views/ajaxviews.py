@@ -24,7 +24,7 @@ from kavenegar import *
 import threading, random, string, datetime
 
 # get model
-from shop.models import OptionMeta, Contactus
+from shop.models import OptionMeta, Contactus, Factor, FactorPost, Product
 from blog.models import Blog
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -127,6 +127,78 @@ def add_new_comment(request):
             this_post.save_comment(this_name, this_message)
 
             return JsonResponse({'status' : True}, status = HTTP_201_CREATED)
+        else:
+            return JsonResponse({'status' : False, 'message' : 'Input data is incomplete'}, status = HTTP_400_BAD_REQUEST)
+    except Exception as e:
+        return JsonResponse({'status' : False, 'message' : str(e)}, status = HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+# add to card
+@csrf_exempt
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def add_to_card(request):
+    try:
+        # get data
+        this_product_id = request.POST.get("this_product")
+        this_count = request.POST.get("this_count")
+        # check data
+        if len(this_count) > 0:
+            # check factor
+            if Factor.objects.filter(PaymentStatus = False, FK_User = request.user).exists():
+                this_factor = Factor.objects.get(FK_User = request.user, PaymentStatus = False)
+                # get this product
+                this_product = Product.objects.get(id = this_product_id)
+                if this_factor.FK_FactorPost.filter(FK_Product = this_product).exists():
+                    this_item = this_factor.FK_FactorPost.get(FK_Product = this_product)
+                    this_item.ProductCount += int(this_count)
+                else:
+                    this_item = FactorPost.objects.create(FK_Product = this_product, ProductCount = int(this_count))
+                    Factor.objects.filter(PaymentStatus = False, FK_User = request.user)[0].FK_FactorPost.add(this_item)
+            else:
+                this_factor = Factor.objects.create(FK_User = request.user, PaymentStatus = False)
+                this_product = Product.objects.get(id = this_product_id)
+                this_item = FactorPost.objects.create(FK_Product = this_product, ProductCount = int(this_count))
+                this_factor.FK_FactorPost.add(this_item)
+
+            return JsonResponse({'status' : True}, status = HTTP_200_OK)
+        else:
+            return JsonResponse({'status' : False, 'message' : 'Input data is incomplete'}, status = HTTP_400_BAD_REQUEST)
+    except Exception as e:
+        return JsonResponse({'status' : False, 'message' : str(e)}, status = HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+# update_factor
+@csrf_exempt
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def update_factor(request):
+    try:
+        # get data
+        this_phone = request.POST.get("this_phone")
+        this_address = request.POST.get("this_address")
+        this_zip = request.POST.get("this_zip")
+        this_state = request.POST.get("this_state")
+        this_city = request.POST.get("this_city")
+        this_bigcity = request.POST.get("this_bigcity")
+        # check data
+        if (len(this_phone) > 0) and (len(this_address) > 0) and (len(this_zip) > 0) and (len(this_state) > 0) and (len(this_city) > 0) and (len(this_bigcity) > 0):
+            # get this factor
+            this_factor = Factor.objects.get(FK_User = request.user, PaymentStatus = False)
+            this_factor.MobileNumber = this_phone
+            this_factor.ZipCode = this_zip
+            this_factor.Address = this_address
+            this_factor.City = this_city
+            this_factor.BigCity = this_bigcity
+            this_factor.State = this_state
+            total_price = 0
+            for item in this_factor.FK_FactorPost.all():
+                total_price += item.Endprice
+            this_factor.TotalPrice = total_price
+            this_factor.PaymentStatus = True
+            this_factor.save()
+   
+            return JsonResponse({'status' : True}, status = HTTP_200_OK)
         else:
             return JsonResponse({'status' : False, 'message' : 'Input data is incomplete'}, status = HTTP_400_BAD_REQUEST)
     except Exception as e:

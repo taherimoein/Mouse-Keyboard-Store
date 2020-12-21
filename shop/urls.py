@@ -17,6 +17,8 @@ urlpatterns = [
     path('signup/', views.sign_up, name = 'sign_up_page'),
     # Singel Product Path <----->
     path('products/<int:id>', views.singel_product, name = 'single_product'),
+    # Show Card Path <----->
+    path('card/', views.show_cart, name = 'show_card'),
     # Check Mobile Number <----->
     path('ajax/check/mobile-number/', singviews.check_mobilenubmer, name = 'ajax_check_mobilenumber'),
     # Sing in fun <----->
@@ -25,6 +27,10 @@ urlpatterns = [
     path('singout/', singviews.signout, name = 'singout'),
     # Sing in fun <----->
     path('ajax/singup/', singviews.singup, name = 'ajax_singup'),
+    # Add to card fun <----->
+    path('ajax/add-to-card/', ajaxviews.add_to_card, name = 'ajax_add_to_card'),
+    # Update Factor fun <----->
+    path('ajax/update-factor/', ajaxviews.update_factor, name = 'ajax_update_factor'),
 
     # <====================================================================================>
     # Add To Newsletters Path <----->

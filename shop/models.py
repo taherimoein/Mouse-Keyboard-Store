@@ -273,4 +273,66 @@ class Contactus(models.Model):
     class Meta:
         ordering = ('id',)
         verbose_name = "ارتباط با ما"
-        verbose_name_plural = "ارتباط های با ما" 
+        verbose_name_plural = "ارتباط های با ما"
+
+
+
+# FactorPost (محصولات فاکتور) Model
+class FactorPost (models.Model):
+    FK_Product=models.OneToOneField(Product, on_delete=models.SET_NULL, verbose_name='محصول', related_name='Factor_Product', null=True)
+    ProductCount=models.PositiveIntegerField(verbose_name='تعداد محصول', default=1)
+    Endprice = models.BigIntegerField(verbose_name='قیمت نهایی', default=0)
+
+    def end_price(self):
+        self.Endprice = int(self.FK_Product.price) * self.ProductCount
+        self.save()
+
+    def __str__(self):
+        return "{}".format(self.FK_Product)
+    
+    # Ordering With DateCreate
+    class Meta:
+        ordering = ('id',)
+        verbose_name = "محصول فاکتور"
+        verbose_name_plural = "محصول فاکتور ها"
+        
+#----------------------------------------------------------------------------------------------------------------------------------
+
+# Factor (فاکتور) Model 
+class Factor(models.Model):
+    FK_User = models.ForeignKey(User, on_delete = models.SET_NULL, verbose_name = 'صاحب فاکتور', related_name='UserFactor', null=True)
+    MobileNumber=models.CharField(verbose_name='شماره موبایل', max_length=11, blank=True)
+    ZipCode=models.CharField(verbose_name='کد پستی', max_length=10, blank=True)
+    Address=models.CharField(verbose_name='آدرس', max_length=300, blank=True)
+    City=models.CharField(verbose_name='شهر', max_length=50, blank=True)
+    BigCity=models.CharField(verbose_name='شهرستان', max_length=50, blank=True)
+    State =models.CharField(verbose_name='استان', max_length=50, blank=True)
+    FK_FactorPost = models.ManyToManyField(FactorPost, verbose_name='محصولات فاکتور', related_name='Factor_Products', blank=True)
+    TotalPrice=models.CharField(verbose_name='هزینه کل', max_length=15)
+    PAYMENT_STATUS =(
+        (True,'پرداخت شد'),
+        (False,'پرداخت نشده'),
+    )
+    PaymentStatus=models.BooleanField(verbose_name='وضعیت پرداخت', choices=PAYMENT_STATUS, default=False)
+    OrderDate=models.DateTimeField(verbose_name='تاریخ خرید', auto_now_add=True)
+    ORDER_STATUS =(
+        ('0','سفارش تحویل داده شده است'),
+        ('1','سفارش آماده است'),
+        ('2','سفارش در حال آماده سازی است'),
+        ('3','منتظر بررسی'),
+        ('4','سفارش لغو شده است'),
+        ('5','سفارش ارسال شده است'),
+    )
+    OrderStatus=models.CharField(verbose_name='وضعیت سفارش', max_length=1, choices=ORDER_STATUS, default='3')
+
+    # Output Customization Based On User, ID
+    def __str__(self):
+        return "{} ({})".format(self.FK_User, self.FactorNumber)
+
+    # Ordering With DateCreate
+    class Meta:
+        ordering = ('id',)
+        verbose_name = "فاکتور"
+        verbose_name_plural = "فاکتور ها"
+
+#----------------------------------------------------------------------------------------------------------------------------------
