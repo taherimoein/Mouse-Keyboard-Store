@@ -15,6 +15,8 @@ urlpatterns = [
     path('signin/', views.sign_in, name = 'sign_in_page'),
     # Sing up Path <----->
     path('signup/', views.sign_up, name = 'sign_up_page'),
+    # Search Path <----->
+    path('serach/', views.search, name = 'search_page'),
     # Singel Product Path <----->
     path('products/<int:id>', views.singel_product, name = 'single_product'),
     # Show Card Path <----->

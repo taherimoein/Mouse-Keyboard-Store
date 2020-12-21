@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from shop.models import Product, Slider, Factor, FactorPost
 from blog.models import Blog
+from django.core.paginator import Paginator
 import json, random
 
 
@@ -103,6 +104,45 @@ def show_cart(request):
         return redirect("shop:sign_in_page")
 
 
+def search(request):
+    if request.method != 'POST':
+        # get all products
+        products_list = Product.objects.all().order_by('-createdate')
+        # products paginator
+        paginator = Paginator(products_list, 12)
+        page_number = request.GET.get('page')
+        products_list = paginator.get_page(page_number)
+
+        context = {
+            'ProductList' : products_list,
+
+        }
+
+        return render(request, 'shop/search-product.html', context)
+    else:
+        words = request.POST["search"]
+        # search word
+        words = words.split(' ')
+        words = list(filter(lambda i: i!='', words))
+        search_words = []
+        for word in words:
+            search_word = list(map(lambda x: x + '\s*', word.replace(' ','')[:-1]))
+            search_word = ''.join(search_word) + word[-1]
+            search_words.append(search_word)
+        search_word = r'.*'.join(search_words)
+        # get blog post
+        products_list = Product.objects.filter(title__regex = search_word).order_by('-createdate')
+        # products paginator
+        paginator = Paginator(products_list, 12)
+        page_number = request.GET.get('page')
+        products_list = paginator.get_page(page_number)
+
+        context = {
+            'ProductList' : products_list,
+
+        }
+
+        return render(request, 'shop/search-product.html', context)
 
 
 
