@@ -57,6 +57,21 @@ def index(request):
     return render(request, 'shop/index.html', context)
 
 
+def singel_product(request, id):
+    # get this product
+    this_product = Product.objects.get(id = id)
+    # get top products
+    top_products = get_random_disproduct_list()
+ 
+    context = {
+        'ThisProduct': this_product,
+        'Images':this_product.image_list[:5],
+        'Top_Products' : top_products,
+    }
+
+    return render(request, 'shop/product-details.html', context)
+
+
 def about_us(request):
     # get sliders
     top_slider = Slider.objects.get(position = 2, publish = True)

@@ -220,6 +220,11 @@ class Product(models.Model):
         self.attributes = data
         self.save()
 
+    def get_url(self):
+        return reverse("shop:single_product", kwargs = {
+            'id': self.id,
+        })
+
     class Meta:
         ordering = ('id',)   
         verbose_name = "محصول"
