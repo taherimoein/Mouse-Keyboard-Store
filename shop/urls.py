@@ -21,6 +21,8 @@ urlpatterns = [
     path('ajax/singin/', singviews.singin, name = 'ajax_singin'),
     # Sing out fun <----->
     path('singout/', singviews.signout, name = 'singout'),
+    # Sing in fun <----->
+    path('ajax/singup/', singviews.singup, name = 'ajax_singup'),
 
     # <====================================================================================>
     # Add To Newsletters Path <----->
