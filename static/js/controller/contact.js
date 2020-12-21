@@ -50,18 +50,17 @@ $("#alert-div-send-succfull").html('<div class="col-xl-12 xol-lg-12 col-md-12 co
 // check validate email
 function validateEmail(thisemail) {
     const pattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    console.log(pattern.test(thisemail));
     return pattern.test(thisemail);
 }
 // check contact fields
 check_fields = function (thisuser_name) {
-    var status = false;
+    var status = true;
     if(thisuser_name.length == 0) {
         $("#alert-div-input-username").show();
         $("#input_fullname").addClass("inputshopempty");
         status = false;
     }
-    if(($('#input_mobile').val().length != 11) & ($('#input_useremail').val().length > 0) & (validateEmail($('#input_useremail').val()) {
+    if($('#input_mobile').val().length != 11) {
         $("#alert-div-input-mobile").show();
         $("#input_mobile").addClass("inputshopempty");
         status = false;
@@ -76,12 +75,12 @@ check_fields = function (thisuser_name) {
         $("#input_message").addClass("inputshopempty");
         status = false;
     }
-    if(($('#input_useremail').val().length == 0) & ($('#input_mobile').val().length != 11)) {
-        $("#alert-div-input-empty-email-or-mobile").show();
-        $("#input_useremail").addClass("inputshopempty");
-        $("#input_mobile").addClass("inputshopempty");
-        status = false;
-    }
+    // if(($('#input_useremail').val().length == 0) && ($('#input_mobile').val().length != 11)) {
+    //     $("#alert-div-input-empty-email-or-mobile").show();
+    //     $("#input_useremail").addClass("inputshopempty");
+    //     $("#input_mobile").addClass("inputshopempty");
+    //     status = false;
+    // }
     // if ((thisuser_name.length != 0) & ((thisuser_mobile.length != 0 && thisuser_mobile.length == 11) | (thisuser_email.length != 0)) & (thisuser_message.length != 0)){
     //     return true;
     // }else{
@@ -105,7 +104,7 @@ $("#input_mobile").on("input", function () {
 })
 
 $("#input_useremail").on("input", function () {
-    if ($(this).val() !== '') {
+    if (($(this).val() !== '') && (validateEmail($(this).val()))) {
         $(this).removeClass("inputshopempty");
         $("#alert-div-input-email").hide();
     }

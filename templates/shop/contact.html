@@ -87,7 +87,8 @@
 		var  thisuser_mobile = $('#input_mobile').val();
 		var  thisuser_email = $('#input_useremail').val();
 		var  thisuser_message = $('#input_message').val();
-		if (check_fields(thisuser_fullname)){
+		var status = $(check_fields(thisuser_fullname));
+		if (status[0] == true){
 			$.ajax(
 				{
 					type: 'POST',
