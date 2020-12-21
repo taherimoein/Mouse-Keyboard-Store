@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.postgres.fields import ArrayField
 from django.db.models import JSONField
 from datetime import datetime
+from django.shortcuts import reverse
 
 # --------------------------------------------------------------------------------------------------------------------------------------
 
@@ -26,6 +27,25 @@ class Blog(models.Model):
 
     def __str__(self):
         return "{}".format(self.title)
+
+    def get_url(self):
+        return reverse("blog:single_blog_page", kwargs = {
+            'slug': self.slug,
+        })
+
+    def save_comment(self, name, message):
+        if self.reted_list is not None:
+            this_comment = {'name': name, 'message': message}
+            this_list = list(self.reted_list['list'])
+            this_list.append(this_comment)
+            self.reted_list['list'] = this_list
+            self.save()
+        else:
+            self.reted_list = {'list': []}
+            this_comment = {'name': name, 'message': message}
+            self.reted_list['list'] = this_comment
+            self.save()
+
 
     class Meta:
         ordering = ('id',)   

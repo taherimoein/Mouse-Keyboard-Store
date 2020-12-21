@@ -25,6 +25,7 @@ import threading, random, string, datetime
 
 # get model
 from shop.models import OptionMeta, Contactus
+from blog.models import Blog
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -100,6 +101,30 @@ def add_new_connectus(request):
                 this_connectus.email = this_email
             # save data
             this_connectus.save()
+
+            return JsonResponse({'status' : True}, status = HTTP_201_CREATED)
+        else:
+            return JsonResponse({'status' : False, 'message' : 'Input data is incomplete'}, status = HTTP_400_BAD_REQUEST)
+    except Exception as e:
+        return JsonResponse({'status' : False, 'message' : str(e)}, status = HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+# add comment
+@csrf_exempt
+@api_view(["POST"])
+@permission_classes([AllowAny])
+def add_new_comment(request):
+    try:
+        # get data
+        this_post_id = request.POST.get("this_post")
+        this_name = request.POST.get("this_fullname")
+        this_message = request.POST.get("this_message")
+        # check data
+        if (len(this_name) > 0) and (len(this_message) > 0):
+            # get this post
+            this_post = Blog.objects.get(id = this_post_id)
+            # add comment
+            this_post.save_comment(this_name, this_message)
 
             return JsonResponse({'status' : True}, status = HTTP_201_CREATED)
         else:
