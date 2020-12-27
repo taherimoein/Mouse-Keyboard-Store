@@ -1,8 +1,12 @@
-from django.urls import path, re_path 
+from django.urls import path, re_path
+from django.conf.urls import url
+from django.views.generic import TemplateView
 from .views import views, ajaxviews, singviews
 
 app_name = 'shop'
 urlpatterns = [
+    # Robot Path <----->
+    url(r'^robots\.txt/$', TemplateView.as_view(template_name = "robots.txt", content_type = 'text/plain')),
     # Index Path <----->
     path('', views.index, name = 'index_page'),
     # Session Path <----->
