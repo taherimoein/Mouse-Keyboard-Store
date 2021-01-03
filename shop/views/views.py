@@ -165,32 +165,3 @@ def sign_in(request):
 def sign_up(request):
 
     return render(request, 'registration/signup.html')
-
-
-# # add products to db
-# def add_products_to_db(request):
-
-#     # read json file
-#     with open("mouse_keyboard_store/data_keyboards.json", encoding = 'utf8') as data:
-#         this_file = json.load(data)
-#     # add data to db
-#     print(str(len(this_file)))
-#     for item in this_file:
-#         this_title = item['title']
-#         this_description = item['description']
-#         this_image_list = item['ImagesUrl']
-#         this_top_image = this_image_list[0]
-#         this_image_list.remove(this_top_image)
-#         this_point = float(item['point'])
-#         this_price = ''.join(item['price'].split(','))
-#         this_attributes = item['Params']
-#         # this product
-#         this_product = Product.objects.create(title = this_title, description = this_description, point = this_point, price = this_price, top_image = this_top_image, publish = True)
-#         # set image list
-#         this_product.image_list = this_image_list
-#         this_product.save()
-#         # set attributes
-#         this_product.save_attributes(this_attributes)
-#         print(str(len(this_file) - 1))
-
-#     return render(request, 'shop/about.html')
