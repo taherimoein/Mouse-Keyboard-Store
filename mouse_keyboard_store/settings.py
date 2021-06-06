@@ -84,28 +84,28 @@ WSGI_APPLICATION = 'mouse_keyboard_store.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 # Postgersql Local DB
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dbmousekeyboardstore',
-        'USER': 'postgres',
-        'PASSWORD': 'moein@taheri',
-        'HOST' : 'localhost',
-        'PORT' : '5432',
-    }
-}
-
-# Postgersql Liara DB
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
 #         'NAME': 'dbmousekeyboardstore',
-#         'USER': 'root',
-#         'PASSWORD': 'Yhed2cs4gr9fqenYqJgl8lS9',
-#         'HOST' : 'tommy.iran.liara.ir',
-#         'PORT' : '30999',
+#         'USER': 'postgres',
+#         'PASSWORD': 'moein@taheri',
+#         'HOST' : 'localhost',
+#         'PORT' : '5432',
 #     }
 # }
+
+# Postgersql Liara DB
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dbmousekeyboardstore',
+        'USER': 'root',
+        'PASSWORD': 'n33hB0KLxlw2u7f2qXlsczcd',
+        'HOST' : 'arthur.iran.liara.ir',
+        'PORT' : '30689',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
