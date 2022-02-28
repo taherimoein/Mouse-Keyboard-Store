@@ -95,7 +95,7 @@ WSGI_APPLICATION = 'mouse_keyboard_store.wsgi.application'
 #     }
 # }
 
-# Postgersql Liara DB
+# imrez server
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
