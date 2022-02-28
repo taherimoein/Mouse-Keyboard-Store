@@ -99,7 +99,7 @@ WSGI_APPLICATION = 'mouse_keyboard_store.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dbshop',
+        'NAME': 'dbmousekeyboardstore',
         'USER': 'postgres',
         'PASSWORD': 'oiujsak213312saahk',
         'HOST': '195.248.243.111',
