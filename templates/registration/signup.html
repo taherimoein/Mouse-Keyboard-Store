@@ -69,6 +69,7 @@
     <!-- Ajax -->
     <script text="javascripts">
         $("#signup").on("click", function (e) {
+            e.preventDefault();
             var  thisuser_firstname = $('#first-name').val();
             var  thisuser_lastname = $('#last-name').val();
             var  thisuser_mobile = $('#phone').val();
@@ -88,10 +89,9 @@
                             csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
                         },
                         success: function (json, status, xhr) {
-                            if (xhr.status == 201) {
-                                var base_url = "{{BASE_URL}}" + '/';
-                                window.location.href = base_url;
-                            }
+                            var base_url = '{% url "shop:sign_in_page" %}';
+                            //window.location.href = base_url;
+                            location.replace(base_url);
                         },
                         error: function (xhr) {
                             alert('خطایی رخ داده است.');

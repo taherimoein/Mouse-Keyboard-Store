@@ -49,17 +49,17 @@ def check_mobilenubmer(request):
 
 
 # send sms
-def send_sms(mobilenumber, text):
-    try:
-        api = KavenegarAPI('2B485230622F74625978584E343167657576785041736B4A586D6E524C4661577A56566B44366D674C75413D')
-        params = {
-            'receptor': mobilenumber,
-            'message': text,
-        } 
-        response = api.sms_send(params)
-        print(response)
-    except Exception as e: 
-        print(e)
+# def send_sms(mobilenumber, text):
+#     try:
+#         api = KavenegarAPI('')
+#         params = {
+#             'receptor': mobilenumber,
+#             'message': text,
+#         } 
+#         response = api.sms_send(params)
+#         print(response)
+#     except Exception as e: 
+#         print(e)
 
 
 # account singup //req : get user info form request //result: ({'status' : (True, False), 'message' : msg}) OR error
@@ -83,10 +83,10 @@ def singup(request):
             this_user.last_name = lastname
             this_user.save()
             # send sms
-            message = 'کاربر محترم ' + mobilenumber + ' شما با موفقیت در سایت keymou ثبت نام کردید.'
-            send_sms(mobilenumber, message)
-            # login user
-            login(request, this_user)
+            # message = 'کاربر محترم ' + mobilenumber + ' شما با موفقیت در سایت keymou ثبت نام کردید.'
+            # send_sms(mobilenumber, message)
+            # # login user
+            # login(request, this_user)
 
             return JsonResponse({'status' : True, 'message' : '201'} , status = HTTP_201_CREATED)
         else:

@@ -95,15 +95,15 @@ WSGI_APPLICATION = 'mouse_keyboard_store.wsgi.application'
 #     }
 # }
 
-# Postgersql Liara DB
+# imrez server
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'dbmousekeyboardstore',
-        'USER': 'root',
-        'PASSWORD': 'Yhed2cs4gr9fqenYqJgl8lS9',
-        'HOST' : 'tommy.iran.liara.ir',
-        'PORT' : '30999',
+        'USER': 'postgres',
+        'PASSWORD': 'oiujsak213312saahk',
+        'HOST': '195.248.243.111',
+        'PORT': '5432'
     }
 }
 
@@ -175,9 +175,9 @@ REST_FRAMEWORK = {
 }
 
 # EMAIL SMTP
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.iran.liara.ir'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'kms'
-EMAIL_HOST_PASSWORD = '53e0210a-9db3-4c37-9c16-3caf85acf2d5'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.iran.liara.ir'
+# EMAIL_USE_TLS = True
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = ''
+# EMAIL_HOST_PASSWORD = ''

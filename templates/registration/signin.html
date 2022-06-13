@@ -67,6 +67,7 @@
     <!-- Ajax -->
     <script text="javascripts">
         $("#signin").on("click", function (e) {
+            e.preventDefault();
             var  MobileNumber = $('#input_mobilenumber').val();
             var  PasswordUser = $('#input_password').val();
             if ($('#remember-me').is(":checked")){
@@ -92,8 +93,10 @@
                         if (json.status == true) {
                             if (json.message == '200') {
                                 $('.errorbox').hide();
-                                var base_url = "{{BASE_URL}}" + json.next;
-                                window.location.href = base_url;
+                                var base_url = "/";
+                                // + json.next;
+                                //window.location.href = base_url;
+                                location.replace(base_url);
                             }
                             else if (json.message == '400') {
                                 console.log('400');

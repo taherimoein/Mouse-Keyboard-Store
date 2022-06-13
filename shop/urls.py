@@ -1,8 +1,13 @@
-from django.urls import path, re_path 
+from django.urls import path, re_path
+from django.conf.urls import url
+from django.views.generic import TemplateView
 from .views import views, ajaxviews, singviews
 
 app_name = 'shop'
 urlpatterns = [
+    # path('add-products-to-db/', views.add_products_to_db, name = 'add_products_to_db'),
+    # Robot Path <----->
+    url(r'^robots\.txt/$', TemplateView.as_view(template_name = "robots.txt", content_type = 'text/plain')),
     # Index Path <----->
     path('', views.index, name = 'index_page'),
     # Session Path <----->
@@ -15,6 +20,8 @@ urlpatterns = [
     path('signin/', views.sign_in, name = 'sign_in_page'),
     # Sing up Path <----->
     path('signup/', views.sign_up, name = 'sign_up_page'),
+    # Search Path <----->
+    path('serach/', views.search, name = 'search_page'),
     # Singel Product Path <----->
     path('products/<int:id>', views.singel_product, name = 'single_product'),
     # Show Card Path <----->
@@ -31,7 +38,6 @@ urlpatterns = [
     path('ajax/add-to-card/', ajaxviews.add_to_card, name = 'ajax_add_to_card'),
     # Update Factor fun <----->
     path('ajax/update-factor/', ajaxviews.update_factor, name = 'ajax_update_factor'),
-
     # <====================================================================================>
     # Add To Newsletters Path <----->
     path('add/new-email/', ajaxviews.add_to_newsletters, name = 'add_to_newsletters'),

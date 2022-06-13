@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from shop.models import Product, Slider, Factor, FactorPost
 from blog.models import Blog
+from django.core.paginator import Paginator
 import json, random
 
 
@@ -103,6 +104,44 @@ def show_cart(request):
         return redirect("shop:sign_in_page")
 
 
+def search(request):
+    if request.method != 'POST':
+        # get all products
+        products_list = Product.objects.all().order_by('-createdate')
+        # products paginator
+        paginator = Paginator(products_list, 12)
+        page_number = request.GET.get('page')
+        products_list = paginator.get_page(page_number)
+
+        context = {
+            'ProductList' : products_list,
+
+        }
+
+        return render(request, 'shop/search-product.html', context)
+    else:
+        words = request.POST["search"]
+        # search word
+        words = words.split(' ')
+        words = list(filter(lambda i: i!='', words))
+        search_words = []
+        for word in words:
+            search_word = list(map(lambda x: x + '\s*', word.replace(' ','')[:-1]))
+            search_word = ''.join(search_word) + word[-1]
+            search_words.append(search_word)
+        search_word = r'.*'.join(search_words)
+        # get blog post
+        products_list = Product.objects.filter(title__regex = search_word).order_by('-createdate')
+        # products paginator
+        paginator = Paginator(products_list, 12)
+        page_number = request.GET.get('page')
+        products_list = paginator.get_page(page_number)
+
+        context = {
+            'ProductList' : products_list,
+
+        }
+        return render(request, 'shop/search-product.html', context)
 
 
 
@@ -113,44 +152,43 @@ def contact_us(request):
     context = {
         # 'Slider' : top_slider,
     }
-
     return render(request, 'shop/contact.html', context)
 
 
 def sign_in(request):
-
     return render(request, 'registration/signin.html')
 
 
 def sign_up(request):
-
     return render(request, 'registration/signup.html')
 
 
 # # add products to db
 # def add_products_to_db(request):
-
 #     # read json file
-#     with open("mouse_keyboard_store/data_keyboards.json", encoding = 'utf8') as data:
+#     with open("data_mouse.json", encoding = 'utf8') as data:
 #         this_file = json.load(data)
 #     # add data to db
 #     print(str(len(this_file)))
 #     for item in this_file:
-#         this_title = item['title']
-#         this_description = item['description']
-#         this_image_list = item['ImagesUrl']
-#         this_top_image = this_image_list[0]
-#         this_image_list.remove(this_top_image)
-#         this_point = float(item['point'])
-#         this_price = ''.join(item['price'].split(','))
-#         this_attributes = item['Params']
-#         # this product
-#         this_product = Product.objects.create(title = this_title, description = this_description, point = this_point, price = this_price, top_image = this_top_image, publish = True)
-#         # set image list
-#         this_product.image_list = this_image_list
-#         this_product.save()
-#         # set attributes
-#         this_product.save_attributes(this_attributes)
-#         print(str(len(this_file) - 1))
+#         if not Product.objects.filter(title = item['title']).exists():
+#             this_title = item['title']
+#             this_description = item['description']
+#             this_image_list = item['ImagesUrl']
+#             this_top_image = this_image_list[0]
+#             this_image_list.remove(this_top_image)
+#             this_point = float(item['point'])
+#             this_price = ''.join(item['price'].split(','))
+#             this_attributes = item['Params']
+#             # this product
+#             this_product = Product.objects.create(title = this_title, description = this_description, point = this_point, price = this_price, top_image = this_top_image, publish = True)
+#             # set image list
+#             this_product.image_list = this_image_list
+#             this_product.save()
+#             # set attributes
+#             this_product.save_attributes(this_attributes)
+#             print(str(len(this_file) - 1))
+#         else:
+#             print(str(len(this_file) - 1))
 
 #     return render(request, 'shop/about.html')

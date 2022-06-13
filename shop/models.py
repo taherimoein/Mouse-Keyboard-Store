@@ -50,7 +50,7 @@ class User (AbstractBaseUser):
     superuser = models.BooleanField(verbose_name = 'وضعیت مدیریت', default = False)
     staff = models.BooleanField(verbose_name = 'وضعیت کارمندی', default = False)
     birthdate = models.DateField(verbose_name = 'تارخ تولد', blank = True, null = True)
-    profile = models.ImageField(verbose_name = 'عکس پروفایل', upload_to = 'media/images/profile/', default = 'static/img/joblogo.png')
+    profile = models.ImageField(verbose_name = 'عکس پروفایل', upload_to = 'media/images/profile/', default = 'static/img/default-profile.jpg')
     SEX_TYPE =(
         (0,'انتخاب جنسیت'),
         (1,'زن'),
