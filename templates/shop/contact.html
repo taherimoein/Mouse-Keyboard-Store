@@ -50,11 +50,11 @@
 						</div>
 					{% endif %}
 					<div class="bo4 of-hidden size15 m-b-20">
-						<input class="sizefull s-text7 p-l-22 p-r-22" type="number" name="phone-number" value="{{request.user.mobile}}" placeholder="شماره تلفن" id="input_mobile">
+						<input class="sizefull s-text7 p-l-22 p-r-22" type="number" name="phone-number" {% if request.user.is_authenticated %}value="{{request.user.mobile}}"{% endif %} placeholder="شماره تلفن" id="input_mobile">
 					</div>
 
 					<div class="bo4 of-hidden size15 m-b-20">
-						<input class="sizefull s-text7 p-l-22 p-r-22" type="email" name="email" value="{{request.user.email}}" placeholder="ایمیل" id="input_useremail">
+						<input class="sizefull s-text7 p-l-22 p-r-22" type="email" name="email" {% if request.user.is_authenticated %}value="{{request.user.email|default_if_none:''}}"{% endif %} placeholder="ایمیل" id="input_useremail">
 					</div>
 
 					<textarea class="dis-block s-text7 size20 bo4 p-l-22 p-r-22 p-t-13 m-b-20" name="message" placeholder="متن پیام" id="input_message"></textarea>
